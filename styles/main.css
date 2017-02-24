@@ -7,6 +7,14 @@
 	background-color:#e74c3c!important; 
 }
 
+.alizarin{
+	background: #2ecc71!important;
+}
+
+#footer{
+	text-align: center!important;
+}
+
 @media screen and (max-width: 720px){
 	.portfolio-item{
 		width: 90vw !important;
