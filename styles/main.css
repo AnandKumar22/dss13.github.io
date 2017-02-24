@@ -6,3 +6,9 @@
 .emerald{
 	background-color:#e74c3c!important; 
 }
+
+@media screen and (max-width: 720px){
+	.portfolio-item{
+		width: 90vw !important;
+	}
+}
