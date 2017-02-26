@@ -20,3 +20,12 @@
 		width: 90vw !important;
 	}
 }
+
+*{
+	box-sizing: border-box;
+}
+
+html,body{
+	margin:0;
+	overflow-x: hidden;
+}
