@@ -9,6 +9,8 @@
 
 .alizarin{
 	background: #4f4f4f !important;
+	padding-left: 60px;
+	padding-right: 60px;
 }
 
 #footer{
@@ -32,4 +34,12 @@ html,body{
 
 .navbar-toggle{
 	margin-top: 27px;
+}
+
+.cards{
+	background: #3498db;
+	border-radius: 5px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	box-shadow: 0 0 8px rgba(0,0,0,0.5);
 }
