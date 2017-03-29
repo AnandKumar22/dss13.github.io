@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css'>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- <link rel="stylesheet" href="/static/css/bootstrap.min.css"> -->
+	<!-- <script src="/static/js/jquery.min.js"></script> -->
+    <!-- <script type="text/javascript" src="{% static "js/auth.js" %}"></script> -->
+	<!-- <script src="/static/js/bootstrap.min.js"></script> -->
+    <!-- <link rel="shortcut icon" type="image/jpg" href="http://usedipper.com/assets/logo-favicon-a08c0839399724adc0442e6a8d5ecb119fd5d73f43695f407cacb63ced9a670b.jpg"> -->
+	<link rel="stylesheet" type="text/css" href="static/css/main.css">
+	<title>Supply Chain</title>
+</head>
+
+<body>
+<!-- <div id="pre-load"></div> -->
+<div id="nav_bar">
+	<div id="ham">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+	<div id="ktj">
+        Hi! {{ username }}<br>
+	</div>
+	<div id="user_name">
+		<div id="logout" onclick="logout();">Logout</div>
+	</div>
+    <a href="#" data-toggle="modal" data-target="#lead"><i class="fa fa-trophy" aria-hidden="true"></i></a>
+</div>
+
+<div id="sidcon">
+    <div id="sidebar">
+        <div id="scm">Balance: ₹ {{ balance }}</div>
+        <div class="options_sb">
+            <h4>₹ Goods pricing</h4>
+            <div class="opt_body">
+                <table id="goods-tbl" style="width:100%;margin-left:10px;">
+                    <tr>
+                        <th>S.No</th>
+                        <th colspan="3">Product</th>
+                        <th colspan="2">Production cost (₹)</th>
+                        <th>M.R.P. (₹)</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="options_sb">
+            <h4>₹ Shipping Time</h4>
+            <div class="opt_body">
+                <table id="shipping-tbl" style="width:100%;margin-left:10px;">
+                    <tr>
+                        <th>S.No</th>
+                        <th colspan="3">Source</th>
+                        <th colspan="3">Destination</th>
+                        <th>Time</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="options_sb">
+            <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i> In-Production</h4>
+            <div class="opt_body">
+                <table id="mfing-tbl" style="width:100%;margin-left:10px;">
+                    <tr>
+                        <th>S.No</th>
+                        <th colspan="3">Product</th>
+                        <th colspan="2">Placed on</th>
+                        <th>Units</th>
+                        <th>Time left</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="options_sb">
+            <h4><i class="fa fa-truck" aria-hidden="true"></i> Travelling</h4>
+            <div class="opt_body">
+                <table id="tping-tbl" style="width:100%;margin-left:10px;">
+                    <tr>
+                        <th>S.No</th>
+                        <th colspan="2">Product</th>
+                        <th colspan="3">Source</th>
+                        <th colspan="3">Destination</th>
+                        <th>Cost (₹)</th>
+                        <th>Time left</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="container">
+
+	<div id="game">
+		<div id="mf" data-toggle="modal" data-target="#manufac" class="options">Manufacture</div>
+		<div id="tp" class="options" data-toggle="modal" data-target="#transp">Transport</div>
+		<div id="wh" class="options" data-toggle="modal" data-target="#wareho">Ware House</div>
+		<div id="dm" class="options" data-toggle="modal" data-target="#deman">Demand</div>
+		<div id="stats" data-toggle="modal" data-target="#stat">
+			<img src="static/images/Kshitij_Logo.png" width="100px">Stats
+		</div>
+	</div>
+    <div id="instruction" style="display:none;">
+    <br><br>
+        <a href="https://www.youtube.com/watch?v=Fkq28NuPXwI&list=PLkLoSDqg0b2zFn57I6L-fwrkhZizES08E&index=2" target="_blank"><h4>Click here for a detailed walkthrough</h4></a><br><br>
+        <h3>What is Supply Chain Management?</h3><br>
+        <p>In commerce, supply chain management (SCM), the management of the flow of goods and services, involves the movement and storage of raw materials, of work-in-process warehouse, and of finished goods from point of origin to point of consumption. Interconnected or interlinked networks, channels and node businesses combine in the provision of products and services required by end customers in a supply chain. Supply-chain management has been defined as the "design, planning, execution, control, and monitoring of supply chain activities with the objective of creating net value, building a competitive infrastructure, leveraging worldwide logistics, synchronizing supply with demand and measuring performance globally."</p>
+
+        <h3>About the Game</h3><br>
+
+        <p>Supply Chain Matrix: Decide, Conquer and Rule the world of Supply Chain<br>
+        The principal agenda of this event is to bring out the best bureaucratic qualities in you. Delve deep into the world of logistics and discover the best possible strategies of utilising limited resources and execute them in a real-world scenario. The war between demand and supply is an ancient one and they've returned yet again to haunt you for a while. Do you think you have what it takes to turn the tables in your favour? If yes, then come aboard!</p>
+
+        <p>The task of the player is simple: <b>Neutralize the Supply Chain and Maximize profit</b>.</p>
+        <p>The player
+        will represent a Company and will be introduced to a Supply Chain consisting of all the components
+        like <b>Producer</b>, <b>Supplier</b> etc. initially, and will be solely responsible for all the logistics that will
+        govern the direction of motion of the supply chain. Initially the supply chain will be unbalanced i.e
+        Supply will not be equal to Demand and there will be an initial demand of different types of
+        products by the customer.</p>
+        <p>The player might be expected to think as follows:</p><br>
+
+        <p>
+            <b>Planning</b>: The player should come up with a production plan to produce items to fulfill customer’s
+            orders. Player will be given access to the recent trends in demands of products so that he can predict
+            the change in demand in future and analyze the previous trends.To manufacture the products the
+            company will then have to purchase the raw materials needed.Player can even setup new Factories
+            if he/she feels right.
+        </p>
+
+        <p>
+            <b>Production</b>: Based on a production plan, the raw materials are moved from inventory to the factory.
+            The finished products ordered by the customer are manufactured using the raw materials purchased
+            from suppliers.
+        </p>
+
+        <p>
+            <b>Transportation</b>: When the finished product arrives in the warehouse, the player needs to transport
+            and ultimately deliver it to the customers.
+        </p>
+        <p>
+            <h4><b>How to play?</b></h4>
+
+            The game simple, you need to follow these set of tasks in order to complete one full cycle of the chain:<br>
+            <b>1) Check Demand:</b><br>
+            Go to demand section. You will see a map showing demand distribution throughout the country.
+            On hovering on a ring, you will see the exact demand of a product.
+
+            Observe the demand distribution and plan how much you will manufacture.<br>
+
+            <b>2) Go to Manufacture:</b><br>
+            Once you know the demand, go to the Manufacture section and place order of the required product.
+            Choose the number of units wisely as your factory can handle only 5 manufacturing processes now.
+            It will take a day to complete the manufacturing process.
+            Once Manufactured, your goods will be shifted to ware house. Till then your warehouse will be empty.<br>
+            <b>3) Check your warehouse:</b><br>
+            Check the warehouse for available products and keep a track on their validity, it will tell you for how long that product can be kept more in the warehouse.<br>
+            <b>4)Transport:</b><br>
+            After the products are manufactured and shifted to warehouse, they will be available for transporting otherwise you will not see any product available to transport.<br>
+            For transportation, select your source and destination. Again choose your number of units wisely as you will have only 10 trucks for transportation!<br><br>
+            Once you've transported....<b>just wait!!</b><br><br>
+            You've done all you can!
+            After your produced goods reach the market, you will get your profit and then you can repeat the whole process over and over again and maximize your profits!
+        </p>
+        <br><br><br><br>
+    </div>
+	<!-- Modal -->
+	<div class="modal fade custom" id="manufac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Manufacture</h4>
+	      </div>
+	      <div class="modal-body" id="body">
+
+            <div id="placed" class="mfing">
+	        	<img src="static/images/Conveyor-Belt-icon.png" height="100px">
+	        	<div id="num">Manufacturing: <span id="number1"></span> units <a href="#" class="details_sb">Track In-Production</a></div>
+	        <br>
+	        <hr style="position:absolute;bottom:10px">
+            </div>
+            <div id="place">
+                <h5>Manufacture more:</h5>
+                <form id="manufature-form" action="/" method="POST">{% csrf_token %}
+                    <input type="hidden" name="form-id" value="mf">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!--<input type="text" list="commodities">-->
+                            <select name="commodity" id="commodities">
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" name="units" placeholder="Quantity" id="units" min="0" class="elements">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="cost" placeholder="Estimated Cost" id="cost" min="0" class="elements" disabled>
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <input type="button" onclick="submitMF();"  class="btn btn-info button_bl" value="Manufacture" id="btn1"><br><br>
+                <div id="manu_msg">
+
+                </div>
+
+            </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+	<div class="modal fade custom" id="transp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content transp">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Transport</h4>
+	      </div>
+	      <div class="modal-body" id="tbody">
+	        <div id="placed_t">
+	        	<img src="static/images/Delivery-Icon.png" height="100px">
+	        	<div id="num">Transporting: <span id="number2"></span> units <a href="#" class="details_sb">Track Shipments</a></div>
+	        <br>
+	        <hr>
+            </div>
+	        <div id="place">
+	        	<h5>Transport more</h5>
+                <form id="transport-form" action="/" method="post">{% csrf_token %}
+                    <input type="hidden" name="form-id" value="tp">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select name="commodity" id="commodities-tp">
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="elements" name="source" id="sources">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="elements" name="destination" id="destinations">
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" placeholder="Quantity" name="units" id="units-tp" min="0" class="elements">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" name="cost-tp" placeholder="Estimated Cost" id="cost-tp" class="elements" disabled>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="button" value="Transport" onclick="submitTP();" class="btn btn-info button_bl"  id="btn2">
+                </form><br>
+                <div id="trans_msg">
+
+                </div>
+		      </div>
+		      <!--div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>-->
+		    </div>
+		  </div>
+		</div>
+	</div>
+
+	<div class="modal fade custom" id="wareho" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Ware House</h4>
+	      </div>
+	      <div class="modal-body" id="wbody">
+	        <div style="overflow:auto;">
+				<table id="warehouse-tbl" style="width:100%">
+			    	<tr>
+			    	<th>S.No</th>
+				    <th colspan="2">Product</th>
+				    <th colspan="3">Place</th>
+				    <th>Date of arrival</th>
+				    <th>Quantitiy</th>
+				    <th>Available Till</th>
+				  </tr>
+			  	</table>
+			</div>
+	      </div>
+	      <!--div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>-->
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade custom" id="deman" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document" style="position:relative;top:40px">
+
+
+	      <div id="map">
+			<img src="/static/images/map2.png" height="400px">
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade custom" id="stat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Stats</h4>
+	      </div>
+          <div class="modal-body" id="wbody">
+	        <div style="overflow:auto;">
+				<table id="stats-tbl" style="width:100%">
+			    	<tr>
+			    	<th>S.No</th>
+				    <th colspan="2">Product</th>
+                    <th colspan="3">Source</th>
+				    <th colspan="4">Destination</th>
+				    <th>Date of dispatch</th>
+				    <th>Cost</th>
+				  </tr>
+			  	</table>
+			</div>
+	    </div>
+	  </div>
+	</div>
+
+</div>
+
+
+
+<div class="modal fade custom" id="cred" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">< / > with ♥ by</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12 profiles">
+                <img src="static/images/gaurav.jpg" height="150px">
+                <div class="details_pro">
+                    <h4>Gaurav Sahu (Dem_Fier)</h4>
+                    <p>
+                        <strong>E-mail: </strong>gauravsahu@ktj.in<br>
+                        <strong>Phone: </strong>+91-8768780971
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 profiles">
+                <img src="static/images/sumugan.jpg" height="150px">
+                <div class="details_pro">
+                    <h4>Sumugan Swaroop (DSS)</h4>
+                    <strong>E-mail: </strong>sumugan999@gmail.com<br>
+                    <strong>Phone: </strong>+91-9932209235
+                </div>
+            </div>
+        </div>
+       </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade custom" id="lead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Leader Board</h4>
+      </div>
+      <div class="modal-body">
+        <div style="overflow:auto;">
+            <table id="warehouse-tbl" style="width:100%">
+                <tr>
+                    <th colspan="4">Rank</th>
+                    <th colspan="4">Name</th>
+                    <th colspan="3">Balance(in ₹)</th>
+                </tr>
+                {% for leader in leaders %}
+                <tr>
+                    <td colspan="4"> {{ forloop.counter }}</td>
+                    <td colspan="4">{{ leader.user }}</td>
+                    <td colspan="3">{{ leader.balance }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+       </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer_scm">
+    <a href="https://www.youtube.com/watch?v=n8hWS2suavw&list=PLkLoSDqg0b2zFn57I6L-fwrkhZizES08E&index=1" target="_blank">Demos</a> |
+	<a href="#" id="instructions">Instructions |</a>
+    <a href="#" id="close_inst" style="display:none;">Back to Game |</a>
+	<a data-toggle="modal" data-target="#cred" href="#">Credits |</a>
+    <a href="http://ktj.in/" target="_blank">Kshitij 2017</a>
+</div>
+</div>
+<div id="notifications">
+    <div id="notif-cont">
+        <!-- demo element -->
+        {% for notification in notifications %}
+            <div class="notifs">
+               <span>{{ notification.text }}</span>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="notif-logo">
+        <i class="fa fa-bell" aria-hidden="true"></i>
+    </div>
+</div>
+<script type="text/javascript" src="./static/js/utils.js"></script>
+<script type="text/javascript">
+
+// var user = localStorage.getItem('username');
+// document.getElementById('ktj').innerHTML = 'Hi!' + user;
+// var balance = '';
+
+// // set the balance
+// $.ajax({
+//         url:'/api/scm/user_stats/get/',
+//         dataType:'json',
+//         type:'GET',
+//         async:false,
+//         contentType:'application/x-www-form-urlencoded',
+//         data:{
+//             'user': user
+//         },
+//         success: function(response) {
+//             for (var i = 0; i < response.length; i++) {
+//                 if (response[i].user == user){
+//                     balance = response[i].balance;
+//                     localStorage.setItem('balance', balance);
+//                 }
+//             }
+//         },
+//         error: function(response) {
+//             console.log(response);
+
+
+//         }
+//     });
+
+// function submitTP(){
+//     var form = document.getElementById('transport-form');
+//     var token = form.elements[0].value;
+//     var form_id = form.elements[1].value;
+//     var commodity = form.elements[2].value;
+//     var source = form.elements[3].value;
+//     var destination = form.elements[4].value;
+//     var quantity = form.elements[5].value;
+//     var tpt_cost = form.elements[6].value;
+
+//     // check that no more than 10 other transportations are running currently
+//     $.ajax({
+//             url:'/api/scm/transport/get/',
+//             dataType:'json',
+//             type:'GET',
+//             async:false,
+//             contentType:'application/x-www-form-urlencoded',
+//             success: function(response) {
+//                 console.log(response);
+//                 var count = 0;
+//                 for (var i = 0; i < response.length; i++) {
+//                     if (response[i].user == user && response[i].tpt_flag == 2) {
+//                         count++;
+//                     }
+//                 }
+//                 if (count < 10 && balance - tpt_cost > 0) {
+//                     $.ajax({
+//                             url:'/api/scm/transport/add/',
+//                             dataType:'json',
+//                             type:'POST',
+//                             async:false,
+//                             contentType:'application/x-www-form-urlencoded',
+//                             data:{
+//                                 'csrftoken':token,
+//                                 'form_id': form_id,
+//                                 'user': user,
+//                                 'trans_cost': tpt_cost,
+//                                 'tpt_flag': 2,
+//                                 'commodity': commodity,
+//                                 'source': source,
+//                                 'dest': destination,
+//                             },
+//                             success: function(response) {
+//                                 console.log(response);
+//                                 balance -= tpt_cost;
+//                                 console.log(balance);
+//                                 $('#scm').load('/check_bal/?user=' + user + '&balance=' + balance);
+//                                 localStorage.setItem('balance', balance);
+//                                 document.getElementById('trans_msg').innerHTML = '<center>Your goods are being transported now!!</center>';
+//                                 document.getElementById('placed_t').setAttribute('style', "display: block;");
+
+//                             },
+//                             error: function(response) {
+//                                 console.log(response);
+//                                 document.getElementById('trans_msg').innerHTML = '';
+//                                 setTimeout(function(){
+//                                     document.getElementById('trans_msg').innerHTML = '<center style="color:white;">'+response.responseText+'</center>';
+//                                 },100);
+//                             }
+//                         });
+//                     }
+//                 else if (count >= 10) {
+//                     document.getElementById('trans_msg').innerHTML = '<center style="color:white;">You can\'t  transport at more than 10 places!</center>';
+//                 }
+//                 else if (balance - tpt_cost < 0) {
+//                     document.getElementById('trans_msg').innerHTML = '<center style="color:white;">Not enough Money!</center>';
+//                 }
+//             },
+//             error: function(response) {
+//                 console.log(response);
+//                 document.getElementById('trans_msg').innerHTML = '<center style="color:white;">'+response.responseText+'</center>';
+
+//             }
+//         });
+
+// }
+
+
+// function submitMF(){
+//     var form = document.getElementById('manufature-form');
+//     var token = form.elements[0].value;
+//     var form_id = form.elements[1].value;
+//     var commodity = form.elements[2].value;
+//     var units = form.elements[3].value;
+//     var cost = form.elements[4].value;
+
+//     // check that no more than 5 other manufacture processes are running currently
+//     $.ajax({
+//             url:'/api/scm/manufacture/get/',
+//             dataType:'json',
+//             type:'GET',
+//             async:false,
+//             contentType:'application/x-www-form-urlencoded',
+//             success: function(response) {
+//                 console.log(response);
+//                 var count = 0;
+//                 for (var i = 0; i < response.length; i++) {
+//                     if (response[i].user == user && response[i].mf_flag == 0) {
+//                         count++;
+//                     }
+//                 }
+//                 if (count < 5 && balance - cost > 0) {
+//                     $.ajax({
+//                             url:'/api/scm/manufacture/add/',
+//                             dataType:'json',
+//                             type:'POST',
+//                             async:false,
+//                             contentType:'application/x-www-form-urlencoded',
+//                             data:{
+//                                 'csrftoken':token,
+//                                 'form_id': form_id,
+//                                 'commodity': commodity,
+//                                 'units': units,
+//                                 'user': user,
+//                                 'cost': cost
+//                             },
+//                             success: function(response) {
+//                                 console.log(response);
+//                                 balance -= cost;
+//                                 $('#scm').load('/check_bal/?user=' + user + '&balance=' + balance);
+//                                 localStorage.setItem('balance', balance);
+//                                 document.getElementById('manu_msg').innerHTML = "";
+//                                 setTimeout(function(){
+//                                     document.getElementById('manu_msg').innerHTML = '<center>Your Order has been placed and the products will be shifted to warehouse once manufactured!!</center>';
+//                                 },100);
+//                                 document.getElementById('placed').setAttribute('style', "display: block;");
+//                             },
+//                             error: function(response) {
+//                                 console.log(response);
+//                                 document.getElementById('manu_msg').innerHTML = '<center style="color:white;">'+response.responseText+'</center>';
+//                             }
+//                         });
+//                 }
+//                 else if (count >= 5) {
+//                     document.getElementById('manu_msg').innerHTML = '<center style="color:white;">You can\'t run more than 5 instances of manufacturing processes!</center>';
+//                 }
+//                 else if (balance - cost < 0){
+//                     document.getElementById('manu_msg').innerHTML = '<center style="color:white;">Not enough Money!</center>';
+//                 }
+//             },
+//             error: function(response) {
+//                 console.log(response);
+//                 document.getElementById('manu_msg').innerHTML = '<center style="color:white;">'+response.responseText+'</center>';
+
+//             }
+//         });
+
+
+// }
+
+    $("#instructions").click(function(){
+        $("#instruction").fadeIn();
+        $("#instructions").hide();
+        $("#close_inst").show();
+    });
+    $("#close_inst").click(function(){
+        $("#instruction").fadeOut();
+        $("#instructions").show();
+        $("#close_inst").hide();
+    });
+
+    $("#container").click(function(){
+        $("#notif-cont").fadeOut();
+    });
+</script>
+</body>
+</html>
