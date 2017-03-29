@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Team | MYKTJ</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" src="js/modernizr.custom.79639.js"></script>
+	<noscript><link rel="stylesheet" type="text/css" href="css/noJS.css" /></noscript>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="col-sm-8 col-sm-offset-2">
+	<div class="wrapper-demo">
+		<div id="event" class="wrapper-dropdown-3" tabindex="1">
+			<span>Event Registration</span>
+			<ul class="dropdown">
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+			</ul>
+		</div>
+​	</div>
+</div>
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		<button class="btn">Register</button>
+	</div>
+</div>
+<div class="col-sm-8 col-sm-offset-2">
+	<div class="wrapper-demo">
+		<div id="team" class="wrapper-dropdown-3" tabindex="1">
+			<span>Team Formation</span>
+			<ul class="dropdown">
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+			</ul>
+		</div>
+​	</div>
+</div>
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		<button class="btn">Form Team</button>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		<h4>Manage Team</h4>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		<h4>Team Membership</h4>
+	</div>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript">
+	var name;
+	function DropDown(el) {
+		name=el.id;
+		this.name = el;
+		this.placeholder = this.name.children('span');
+		this.opts = this.name.find('ul.dropdown > li');
+		this.val = '';
+		this.index = -1;
+		this.initEvents();
+	}
+	DropDown.prototype = {
+		initEvents : function() {
+			var obj = this;
+
+			obj.name.on('click', function(event){
+				$(this).toggleClass('active');
+				return false;
+			});
+
+			obj.opts.on('click',function(){
+				var opt = $(this);
+				obj.val = opt.text();
+				obj.index = opt.index();
+				obj.placeholder.text(obj.val);
+			});
+		},
+		getValue : function() {
+			return this.val;
+		},
+		getIndex : function() {
+			return this.index;
+		}
+	}
+
+	$(function() {
+		var team = new DropDown( $('#team') )
+		var event = new DropDown( $('#event') );
+
+		$(document).click(function() {
+			// all dropdowns
+			$('.wrapper-dropdown-3').removeClass('active');
+		});
+
+	});
+
+</script>
+
+</body>
+</html>

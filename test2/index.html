@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="png" href="Kshitij_Logo.png">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>MYKTJ | Kshitij-'17</title>
+</head>
+<body>
+
+	<nav class="menu menu--valentine" id="nav_index">
+		<div class="container">
+		    <div class="row navbar-header col-sm-12" id="brand_index">
+	        	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+		        </button>
+		        <img src="Kshitij_Logo.png" height="90px" id="ktj_lg"/>
+		        <img src="kgp_logo.png" height="90px" id="kgp_lg"/>
+		    	<a class="navbar-brand" href="http://www.ktj.in" id="name_index">Kshitij <strong>'17</strong></a>
+		    </div>
+		    <div class="row">
+			    <div class="collapse navbar-collapse col-md-8 col-md-offset-2" id="myNavbar">
+			      <ul class="nav navbar-nav menu__list">
+			        <li class="menu__item menu__item--current item" id="profile"><a href="#" class="menu__link">Profile</a></li>
+					<li class="menu__item item" id="team"><a href="#" class="menu__link">Teams</a></li>
+					<li class="menu__item item" id="invitations"><a href="#" class="menu__link">Invitations</a></li>
+					<li class="menu__item item" id="submissions"><a href="#" class="menu__link">Submissions</a></li>
+					<li class="menu__item item" id="instructions"><a href="#" class="menu__link">Instructions</a></li>
+			      </ul>
+		    	</div>
+		    </div>
+	  	</div>
+	<!--	<ul class="menu__list">
+			<li class="menu__item menu__item--current"><a href="#" class="menu__link">Home</a></li>
+			<li class="menu__item"><a href="#" class="menu__link">Shop</a></li>
+			<li class="menu__item"><a href="#" class="menu__link">Reviews</a></li>
+			<li class="menu__item"><a href="#" class="menu__link">News</a></li>
+			<li class="menu__item"><a href="#" class="menu__link">Contact</a></li>
+		</ul>-->
+	</nav>
+
+	<div class="container">
+		<div id="dynamic" class="col-sm-8 col-sm-offset-2"></div>
+	</div>
+
+	<script src="js/classie.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script>
+	$(function() {
+
+	$(document).ready(function(){
+		$( "#dynamic" ).html('<object data="profile/index.html"/>')
+	});
+
+  $('#submissions').click(function(e) {
+  		$( "#dynamic" ).html('<object data="submissions/index.html"/>')
+  });
+
+  $('#invitations').click(function(e) {
+  		$( "#dynamic" ).html('<object data="invitations/index.html"/>')
+  });
+
+  $('#team').click(function(e) {
+  		$( "#dynamic" ).html('<object data="team/index.html"/>')
+  });
+
+  $('#instructions').click(function(e) {
+  		$( "#dynamic" ).html('<object data="instructions/index.html"/>')
+  });
+
+  $('#profile').click(function(e) {
+  		$( "#dynamic" ).html('<object data="profile/index.html"/>')
+  });
+
+});
+	(function() {
+		[].slice.call(document.querySelectorAll('.menu')).forEach(function(menu) {
+			var menuItems = menu.querySelectorAll('.menu__link'),
+				setCurrent = function(ev) {
+					ev.preventDefault();
+
+					var item = ev.target.parentNode; // li
+
+					// return if already current
+					if (classie.has(item, 'menu__item--current')) {
+						return false;
+					}
+					// remove current
+					classie.remove(menu.querySelector('.menu__item--current'), 'menu__item--current');
+					// set current
+					classie.add(item, 'menu__item--current');
+				};
+
+			[].slice.call(menuItems).forEach(function(el) {
+				el.addEventListener('click', setCurrent);
+			});
+		});
+
+		[].slice.call(document.querySelectorAll('.link-copy')).forEach(function(link) {
+			link.setAttribute('data-clipboard-text', location.protocol + '//' + location.host + location.pathname + '#' + link.parentNode.id);
+			new Clipboard(link);
+			link.addEventListener('click', function() {
+				classie.add(link, 'link-copy--animate');
+				setTimeout(function() {
+					classie.remove(link, 'link-copy--animate');
+				}, 300);
+			});
+		});
+	})(window);
+	</script>
+</body>
+</html>
