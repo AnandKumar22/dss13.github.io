@@ -1,0 +1,54 @@
+$tablet: "(min-width: 768px) and (max-width: 1023px)";
+$desktop: "(min-width: 1024px)";
+$mid-desktop: "(min-width: 1280px)";
+$hi-desktop: "(min-width: 1600px)";
+$gt-tablet: "(min-width: 768px)";
+$lt-tablet: "(max-width: 768px)";
+$phone: "(max-width: 767px)";
+
+$navbar-height: 80px;
+$header-black: #222222;
+$body-black: #333333;
+$disabled-black: #5D5D5D;
+$header-white: #f8f8f8;
+$body-white: #f2f2f2;
+$disabled-white: #bababa;
+$primary-color: #00BFA5;
+$warning-color: #AD5353;
+$btn-text-light: #fff;
+$btn-text-dark:  #444444;
+
+$max-width: 1920px;
+
+.century-title {
+    // Headings
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+.gill-heading {
+    // Sub-headings
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    text-transform: capitalize;
+}
+
+.gill-regular {
+    // Sub-headings
+    font-family: "Gill Sans", "Gill Sans Regular", Calibri, sans-serif;
+    text-transform: capitalize;
+}
+
+.roboto-thin-content {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+}
+
+.arial-narrow-alt {
+    font-family: "Arial Narrow", Arial, sans-serif;
+}
+
+@mixin transform($t) {
+    -webkit-transform: $t;
+    -ms-transform: $t;
+    -moz-transform: $t;
+    transform: $t;
+}
