@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="comments">
+		
+	</div>
+	<textarea rows="6" cols="50" type="text" id="input"></textarea>
+	<input type="button" name="" id="bold" value="Bold">
+	<input type="button" name="" id="italic" value="Italic">
+	<input type="button" name="" value="Underline" id="underline">
+	<input type="button" name="" id="reply" value="Reply">
+	<script type="text/javascript">
+		var input = document.getElementById('input');
+		var bold = document.getElementById('bold');
+		var reply = document.getElementById('reply');
+		var comments = document.getElementById('comments');
+		var italic = document.getElementById('italic');
+
+		bold.onclick = function() {
+			var initialPoint = input.selectionStart;
+			var finalPoint = input.selectionEnd;
+			console.log(initialPoint + " " + finalPoint);
+			var value = input.value
+			var first = value.substring(0, initialPoint);
+			var middle = value.substring(initialPoint, finalPoint);
+			var end = value.substring(finalPoint, value.length);
+			input.value = first+"**"+middle+"**"+end;
+		}
+
+		reply.onclick = function() {
+			var value = input.value;
+			var parts = value.split("**");
+			console.log(parts);
+			var comment = "";
+			for(var i=0; i<parts.length; i++) {
+				if(i%2){
+					comment+="<b>"+parts[i]+"</b>"
+				} else {
+					comment+= parts[i]
+				}
+			}
+			var italicComment = comment.split('//') 
+			var newComment = ""
+			for(var j=0;j<italicComment.length; j++) {
+				if(j%2){
+					newComment+="<i>"+italicComment[j]+"</i>"
+				} else {
+					newComment+= italicComment[j]
+				}
+			}
+			var underlineComment = newComment.split("__")
+			var anotherComment = ""
+			for(var k=0;k<underlineComment.length;k++) {
+				if(k%2){
+					anotherComment+="<u>"+underlineComment[k]+"</u>"
+				} else {
+					anotherComment+= underlineComment[k]
+				}
+			}
+			comments.innerHTML+="<br>"+anotherComment; 
+			input.value = ""
+		}
+
+		italic.onclick = function() {
+			var initialPoint = input.selectionStart;
+			var finalPoint = input.selectionEnd;
+			console.log(initialPoint + " " + finalPoint);
+			var value = input.value
+			var first = value.substring(0, initialPoint);
+			var middle = value.substring(initialPoint, finalPoint);
+			var end = value.substring(finalPoint, value.length);
+			input.value = first+"//"+middle+"//"+end;
+		}
+		underline.onclick = function() {
+			var initialPoint = input.selectionStart;
+			var finalPoint = input.selectionEnd;
+			console.log(initialPoint + " " + finalPoint);
+			var value = input.value
+			var first = value.substring(0, initialPoint);
+			var middle = value.substring(initialPoint, finalPoint);
+			var end = value.substring(finalPoint, value.length);
+			input.value = first+"__"+middle+"__"+end;
+		}
+	</script>
+</body>
+</html>
