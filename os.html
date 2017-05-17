@@ -31,17 +31,17 @@
 	var isMobile = (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows Phone/i.test(navigator.userAgent)) ? true : false;
 	// document.getElementById('detect').innerHTML = isMobile;
 	var pgwBrowser = $.pgwBrowser();
-	$("#detect").html(pgwBrowser.os.name);
+	$("#detect").html(pgwBrowser.os.group);
 	if(isMobile) {
-		if(pgwBrowser.os.name == "Android") {
+		if(pgwBrowser.os.group == "Android") {
 			$("#bannerOS > h5").text("Open in Play Store");
 			$("#osLink").attr('href', "https://google.com");
-		} else if(pgwBrowser.os.name == "iOS") {
+		} else if(pgwBrowser.os.group == "iOS") {
 			$("#bannerOS > h5").text("Open in App Store");
 			$("#osLink").attr('href', "http://www.apple.com/");
 		}
 	} else {
-		$("#bannerOS > h5").text("You are on " + pgwBrowser.os.name);
+		$("#bannerOS > h5").text("You are on " + pgwBrowser.os.group);
 	}
 </script>
 </body>
