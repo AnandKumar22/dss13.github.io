@@ -2,18 +2,46 @@
 <html>
 <head>
 	<title></title>
+	<style type="text/css">
+		#bannerOS {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			text-align: center;
+			width: 100%;
+			padding: 10px;
+			color: rgba(0,0,0,0.87);
+			background: lightblue;
+		}
+	</style>
 </head>
 <body>
 <div id="detect">
 	
 </div>
+<a href="" id="osLink">
+	<div id="bannerOS">
+		<h5></h5>
+	</div>
+</a>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="detect.js"></script>
 <script type="text/javascript">
-	// var isMobile = (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows Phone/i.test(navigator.userAgent)) ? true : false;
+	var isMobile = (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows Phone/i.test(navigator.userAgent)) ? true : false;
 	// document.getElementById('detect').innerHTML = isMobile;
 	var pgwBrowser = $.pgwBrowser();
 	$("#detect").html(pgwBrowser.os.name);
+	if(isMobile) {
+		if(pgwBrowser.os.name == "Android") {
+			$("#bannerOS > h5").text("Open in Play Store");
+			$("#osLink").attr('href', "https://google.com");
+		} else if(pgwBrowser.os.name == "iOS") {
+			$("#bannerOS > h5").text("Open in App Store");
+			$("#osLink").attr('href', "http://www.apple.com/");
+		}
+	} else {
+		$("#bannerOS > h5").text("You are on " + pgwBrowser.os.name);
+	}
 </script>
 </body>
 </html>
