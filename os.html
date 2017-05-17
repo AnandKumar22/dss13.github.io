@@ -35,10 +35,10 @@
 	if(isMobile) {
 		if(pgwBrowser.os.group == "Android") {
 			$("#bannerOS > h5").text("Open in Play Store");
-			$("#osLink").attr('href', "https://google.com");
+			$("#osLink").attr('href', "https://play.google.com/store/apps/details?id=com.provakil.provakil&hl=en");
 		} else if(pgwBrowser.os.group == "iOS") {
 			$("#bannerOS > h5").text("Open in App Store");
-			$("#osLink").attr('href', "http://www.apple.com/");
+			$("#osLink").attr('href', "https://itunes.apple.com/in/app/provakil/id1111933293?mt=8");
 		}
 	} else {
 		$("#bannerOS > h5").text("You are on " + pgwBrowser.os.group);
