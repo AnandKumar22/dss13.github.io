@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="detect">
+	
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="detect.js"></script>
+<script type="text/javascript">
+	// var isMobile = (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows Phone/i.test(navigator.userAgent)) ? true : false;
+	// document.getElementById('detect').innerHTML = isMobile;
+	var pgwBrowser = $.pgwBrowser();
+	$("#detect").html(pgwBrowser.os.name);
+</script>
+</body>
+</html>
